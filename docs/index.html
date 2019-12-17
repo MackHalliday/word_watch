@@ -5,6 +5,7 @@
     <script src="bundle.js"></script>
     <meta name="viewport" content="width=device-width"/>
   </head>
+
   <body>
     <main>
       <section class="text-submission">
@@ -12,15 +13,26 @@
         <textarea placeholder="Paste text here"></textarea>
         <button>Break down</button>
       </section>
-
       <section class="word-data" tabindex="0">
         <article class="top-word">
           <h3>Top word from Word Watch API: </h3>
+          <div>
+          <p id="fetchUserDataBtn"></p>
+       </div>
+      <hr>
+       <div id="response"></div>
         </article>
         <article class="word-count" tabindex="0">
         </article>
       </section>
     </main>
   </body>
+  <script>
+     async function fetchUserData(){
+         fetch('https://wordwatch-api.herokuapp.com/api/v1/top_word')
+             .then(response => response.json())
+             .then(json => console.log(json.word))
+     }
+     document.getElementById('fetchUserDataBtn').innerHTML = fetchUserData();
+ </script>
 </html>
-
